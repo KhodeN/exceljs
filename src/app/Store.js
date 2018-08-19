@@ -1,15 +1,26 @@
-import {Cell} from './Cell';
-import {numberToColumnCode} from './helpers';
+import {parseValueType} from './types';
+
 
 export class Store {
-    constructor(columnCount, rowCount) {
+    constructor() {
         this._cells = new Map();
+    }
 
-        for (let rowIndex = 0; rowIndex < rowCount; rowIndex += 1) {
-            for (let columnIndex = 0; columnIndex < columnCount; columnIndex += 1) {
-                const key = `${numberToColumnCode(columnIndex)}${rowIndex + 1}`;
-                this._cells.set(key, new Cell());
-            }
+    load(data) {
+        this._cells = new Map();
+        for (const [k, v] of Object.entries(data)) {
+            this.setRawCellValue(k, v);
+        }
+    }
+
+    setCellValue(code, value) {
+        this._cells.set(code, value);
+    }
+
+    setRawCellValue(code, rawValue) {
+        const valueType = parseValueType(rawValue);
+        if (valueType) {
+            this.setCellValue(code, new valueType(rawValue));
         }
     }
 }

@@ -1,3 +1,17 @@
 body {
     font-family: sans-serif;
 }
+
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.excel-table th, .excel-table td {
+    border: 1px solid black;
+}
+
+.excel-table input {
+    border: none;
+    width: 100%;
+}
