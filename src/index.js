@@ -1,4 +1,5 @@
 import {ExcelApp} from './app/ExcelApp';
+
 import './style.css';
 
 const appPlaceholder = document.createElement('div');
